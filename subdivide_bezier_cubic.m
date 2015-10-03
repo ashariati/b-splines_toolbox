@@ -1,6 +1,9 @@
+%===============================================================
+% function b = subdivide_bezier_cubic(b)
+% - input: bezier control points
+% - output: subdivided curve
+%===============================================================
 function b = subdivide_bezier_cubic(b)
-
-off = 1;
 
 if size(b, 1) < 4
     return;

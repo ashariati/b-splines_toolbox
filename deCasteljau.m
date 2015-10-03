@@ -1,13 +1,12 @@
 %===============================================================
-% function p = deCasteljau(b, n)
+% function p = deCasteljau(b, n, m)
 % - input: b, n
 %       b: 4 bezier control points (single curve segment)
 %       n: number of subdivisions
+%       m: degree of bezier curve
 % - output: polygonal line approximating bezier curve
 %===============================================================
-function p = deCasteljau(b, n)
-
-off = 1;
+function p = deCasteljau(b, n, m)
 
 if size(b, 1) < 4
     p = 0;
@@ -21,8 +20,11 @@ for i=1:n
     p = [];
     
     % subdivide finer segments
-    for j=1:4:size(b, 1)
-        p = [p; subdivide_bezier_cubic(b(j:j+3, :))];
+    for j=1:m+1:size(b, 1)
+
+        p = [p; subdivide_bezier(b(j:j+m, :), m)];
+        % p = [p; subdivide_bezier_cubic(b(j:j+3, :))];
+
     end
 
     % new control points to feed the next level
