@@ -10,17 +10,27 @@ hold on;
 d = [];
 
 while 1
+
+    % get input
     [x, y, keydown] = ginput(1);
     d = [d; x, y];
 
-    cla;
+    % reset figure and plot de Boor points
+    cla; 
     plot(d(:, 1), d(:, 2));
 
-    p = b_spline(d);
+    % compute points on spline and Bezier control points
+    [p, B] = b_spline(d);
 
-    if p ~= 0
-        plot(p(:, 1), p(:, 2), '*');
+    if p == 0
+        continue;
     end
+
+    % plot approximated spline curve
+    plot(p(:, 1), p(:, 2));
+
+    % plot Bezier control points
+    plot(B(:, 1), B(:, 2), '*');
 
     if keydown ~= 1
         break;
