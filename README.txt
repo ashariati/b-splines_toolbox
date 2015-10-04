@@ -25,6 +25,6 @@ test_deCasteljau.m :
     -   To change the number of subdivions performed change "n".
 
 
-proj1.pdf :
+report/proj1.pdf :
 
     -   The written solution to P1 (2).
