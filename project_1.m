@@ -9,6 +9,9 @@ hold on;
 % de boor control points
 d = [];
 
+% number of subdivisions desired
+n = 6;
+
 while 1
 
     % get input
@@ -20,7 +23,7 @@ while 1
     plot(d(:, 1), d(:, 2));
 
     % compute points on spline and Bezier control points
-    [p, B] = b_spline(d);
+    [p, B] = b_spline(d, n);
 
     if p == 0
         continue;
