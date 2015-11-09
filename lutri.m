@@ -1,4 +1,4 @@
-function [L, U] = lutri(A)
+function [L, U, Delta] = lutri(A)
 
 % size
 n = size(A, 1);
@@ -27,5 +27,8 @@ Delta_ = delta(0 + off:end-2) ./ delta(1 + off:end-1);
 % build L and U
 L = full(gallery('tridiag', (a .* Delta_), ones(n, 1), zeros(n-1, 1)));
 U = full(gallery('tridiag', zeros(n-1, 1), Delta, c));
+
+% build diagonal matrix big delta
+Delta = diag(Delta);
 
 return;
