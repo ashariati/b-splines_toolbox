@@ -7,8 +7,6 @@
 %===============================================================
 function [p, B] = b_spline(d, n)
 
-N = size(d, 1) - 1;
-
 % compute bezier control points
 B = deBoor_to_bezier(d);
 if B == 0
