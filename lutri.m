@@ -1,3 +1,11 @@
+%===============================================================
+% function [L, U, Delta] = lutri(A)
+% - input: A
+%       A: tridiagonal matrix
+% - output:
+%       L, U: LU factors of A
+%       Delta: squeeze matrix
+%===============================================================
 function [L, U, Delta] = lutri(A)
 
 % size

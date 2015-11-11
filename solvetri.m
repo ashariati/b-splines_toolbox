@@ -1,7 +1,17 @@
+%===============================================================
+% function x = solvetri(A, d, method)
+% - input: A, d
+%       A: tridiagonal matrix
+%       d: result of A*x
+%       method: desired method to solving the system
+%           = 'gausel' | 'lu'
+% - output:
+%       x: solution to system
+%===============================================================
 function x = solvetri(A, d, method)
 
 if (nargin < 3)
-    method = 'lub';
+    method = 'lu';
 end
 
 % solve with gaussian elimination
@@ -22,7 +32,7 @@ fprintf('LU factorization requires: %f seconds\n\n', time);
 % return desired
 if (strcmp(method, 'gausel'))
     x = gx;
-elseif (strcmp(method, 'lub'))
+elseif (strcmp(method, 'lu'))
     x = lux;
 else
     x = -1;

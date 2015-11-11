@@ -1,3 +1,12 @@
+%===============================================================
+% function [A, b] = gausel(A, b)
+% - input: A, b
+%       A: invertible matrix
+%       b: result of A*x
+% - output:
+%       A: row reduced system of original A
+%       b: corresponding result of new A*x
+%===============================================================
 function [A, b] = gausel(A, b)
 
 [n, m] = size(A);

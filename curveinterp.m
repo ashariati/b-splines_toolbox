@@ -1,3 +1,12 @@
+%===============================================================
+% function d = curveinterp(x, cond)
+% - input: x, cond
+%       x: points tangent to the curve
+%       cond: desired end condition 
+%           = 'natural' | 'quadratic' | 'bessel' | 'knot'
+% - output:
+%       d: deBoor control points for the curve passing through x
+%===============================================================
 function d = curveinterp(x, cond)
 
 % argument check
