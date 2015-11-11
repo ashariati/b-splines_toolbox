@@ -33,7 +33,7 @@ elseif strcmp(cond, 'quadratic')
          7 * x(end-1, :) - x(end, :)];
 
     % solve
-    d = inv(A) * y;
+    d = solvetri(A, y);
 
 elseif strcmp(cond, 'bessel')
     % using bessel end conditions
@@ -48,7 +48,7 @@ elseif strcmp(cond, 'bessel')
          6 * x(end-1, :) - (3/2) * d_N];
 
     % solve
-    d = inv(A) * y;
+    d = solvetri(A, y);
     d = [d_0; d; d_N];
 
 elseif strcmp(cond, 'knot')
@@ -76,7 +76,7 @@ elseif strcmp(cond, 'knot')
         % solve
         d_1  = -(1/6) * x(1, :) + (4/3) * x(2, :) - (1/6) * x(3, :);
         d_N1 = -(1/6) * x(end-2, :) + (4/3) * x(end-1, :) - (1/6) * x(end, :);
-        d = inv(A) * y;
+        d = solvetri(A, y);
         d_0 = (7/18) * x(1, :) + (8/9) * x(2, :) + (7/18) * x(3, :) - (2/3) * d(1);
         d_N = (7/18) * x(end-2, :) + (8/9) * x(end-1, :) + (7/18) * x(end, :) - (2/3) * d(end);
         d = [d_0; d_1; d; d_N1; d_N];

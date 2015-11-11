@@ -23,7 +23,7 @@ while 1
     plot(x(:, 1), x(:, 2), 'o');
 
     % solve system
-    d = curveinterp(x, 'natural');
+    d = curveinterp(x, 'knot');
     if d == 0
         continue;
     end
