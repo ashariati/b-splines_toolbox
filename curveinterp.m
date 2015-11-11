@@ -20,7 +20,7 @@ if strcmp(cond, 'natural')
     y = [6 * x(2, :) - x(1, :); 6 * x(3:end-2, :); 6 * x(end-1, :) - x(end, :)];
 
     % solve
-    d = inv(A) * y;
+    d = solvetri(A, y);
 
 elseif strcmp(cond, 'quadratic')
     % using quadratic end conditions
