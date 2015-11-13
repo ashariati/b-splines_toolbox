@@ -12,6 +12,9 @@ x = [];
 % number of subdivisions desired
 n = 6;
 
+% end condition
+econd = 'bessel';
+
 while 1
 
     % get input
@@ -23,7 +26,7 @@ while 1
     plot(x(:, 1), x(:, 2), 'o');
 
     % solve system
-    d = curveinterp(x, 'knot');
+    d = curveinterp(x, econd);
     if d == 0
         continue;
     end
