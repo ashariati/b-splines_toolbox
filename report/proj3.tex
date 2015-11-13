@@ -1,0 +1,614 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{multicol}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+% \allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+% \numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+% \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+% \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+    \normalfont \normalsize 
+    \textsc{Fundamentals of Linear Algebra and Optimization} \\ [25pt] % Your university, school and/or department name(s)
+    \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+    \huge Project 3 \\ % The assignment title
+    \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Danica Fine and Armon Shariati} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+
+\section*{Problem 0}
+\setcounter{section}{0}
+\setcounter{subsection}{1}
+
+We wish to prove that the tangent vectors $m_0$ at $x_0$ and $m_N$ at $x_N$ are given by
+\begin{align*}
+    m_0 &= 3(d_0 - x_0) \\
+    m_N &= 3(x_N - d_N).
+\end{align*}
+Since the curves are given by $C(t)$ and the set of control points, $b_0,
+\dots, b_3$, we compute the derivative of $C(t)$ and evaluate at $0$ and $1$ to
+get $m_0$ and $m_n$, respectively.
+\begin{align*}
+    C(t) &=
+    (1-t)^3 b_0 + 3(1-t)^2 t b_1 + 3(1-t)t^2 b_2 + t^3 b_3 \\
+    C^{\prime}(t) &=
+    -3(1-t)^2b_0 - 6(1-t)tb_1 + 3(1-t)^2b_1 -3t^2b_2 + 6(1-t)tb_2 +     3t^2b_3 \\
+    &=
+    3(1-t)^2(b_1 - b_0) + 6t(1-t)(b_2 - b_1) + 3t^2(b_3 - b_2)
+\end{align*}
+So for $m_0$, we get
+\begin{align*}
+    C^{\prime}(0) &=
+    3(1)^2(b_1 - b_0) + 6(0)(1-t)(b_2 - b_1) + 3(0)^2(b_3 - b_2) \\
+    &=
+    3(b_1 - b_0) \\
+    m_0 &= 3(d_0 - x_0),
+\end{align*}
+where the final substitution is made from equations given to us in the project
+instructions for the first curve. Similarly, for $m_N$ we acquire
+\begin{align*}
+    C^{\prime}(1) &=
+    3(0)^2(b_1 - b_0) + 6(1)(0)(b_2 - b_1) + 3(1)^2(b_3 - b_2) \\
+    &=
+    3(b_3 - b_2) \\
+    m_0 &= 3(x_N - d_N),
+\end{align*}
+where the substitutions are provided to us for the final curve, $C_N$.
+
+
+\section*{Problem 1}
+\setcounter{section}{1}
+\setcounter{subsection}{1}
+
+From $C^\prime(t)$ above, we compute $C^{\prime\prime}(t)$
+\begin{align*}
+    C^{\prime\prime}(t) &=
+    -6(1-t)^2(b_1 - b_0) + 6((1-t) - t)(b_2 - b_1) + 6t(b_3 - b_2) \\
+    &=
+    - 6(1-t)b_1 + 6(1-t)b_0 + 6(1-t)(b_2 - b_1) - 6t(b_2 - b_1) +         6tb_3 - 6tb_2.
+\end{align*}
+For $C_1$, we evaluate $C^{\prime\prime}(t)$ for $t=0$ to get
+\begin{align*}
+    C^{\prime\prime}(0) &=
+    - 6(0)b_1 + 6(0)b_0 + 6(0)(b_2 - b_1) - 6(1)(b_2 - b_1) +             6(1)b_3 - 6(1)b_2 \\
+    &=
+    -6b_2 + 6 b_1 + 6b_3 - 6b_2 \\
+    &=
+    6(b_1 - 2b_2 + b_3),
+\end{align*}
+and for $C_N$, we evaluate the expression for $t=1$, which gives us
+\begin{align*}
+    C^{\prime\prime}(1) &=
+    - 6(1)b_1 + 6(1)b_0 + 6(1)(b_2 - b_1) - 6(0)(b_2 - b_1) +             6(0)b_3 - 6(0)b_2 \\
+    &=
+    -6b_1 + 6 b_0 + 6b_2 - 6b_1 \\
+    &=
+    6(b_0 - 2b_1 + b_2).
+\end{align*}
+
+Given the linear system
+
+\begin{align*}
+    \begin{pmatrix}
+        \frac{7}{2} & 1 \\
+        1 & 4 & 1 & & 0\\
+          & \ddots & \ddots & \ddots \\
+        0 & & 1 & 4 & 1\\
+          & &   & 1 & \frac{7}{2}\\
+    \end{pmatrix} \begin{pmatrix}
+        d_{1}\\
+        d_{2}\\
+        \vdots\\
+        d_{N-2}\\
+        d_{N-1}\\
+    \end{pmatrix} = \begin{pmatrix}
+        6x_{1} - \frac{3}{2}d_{0}\\
+        6x_{2}\\
+        \vdots\\
+        6x_{N-2}\\
+        6x_{N-1} - \frac{3}{2}d_{N}\\
+    \end{pmatrix}
+\end{align*}
+
+and 
+
+\begin{align*}
+    d_{0} &= \frac{2}{3} x_{0} + \frac{1}{3} d_{1}\\
+    d_{N} &= \frac{1}{3} d_{N-1} + \frac{2}{3} x_{N},\\
+\end{align*}
+
+we can substitute $d_{0}$ and $d_{N}$ into the following equations
+
+\begin{align*}
+    \frac{7}{2}d_{1} + d_{2} &= 6x_{1} - \frac{3}{2}d_{0}\\
+    d_{N-2} + \frac{7}{2}d_{N-1}  &= 6x_{N-1} - \frac{3}{2}d_{N}.\\
+\end{align*}
+
+As a result,
+
+\begin{align*}
+    \begin{split}
+        \frac{7}{2}d_{1} + d_{2} &= 6x_{1} - \frac{3}{2}\left( \frac{2}{3} x_{0} + \frac{1}{3} d_{1} \right)\\
+        \frac{7}{2}d_{1} + d_{2} &= 6x_{1} - x_{0} - \frac{1}{2} d_{1}\\
+        4d_{1} + d_{2} &= 6x_{1} - x_{0}\\
+    \end{split}
+    \begin{split}
+        d_{N-2} + \frac{7}{2}d_{N-1} &= 6x_{1} - \frac{3}{2}\left( \frac{1}{3} d_{N-1} + \frac{2}{3} x_{N} \right)\\
+        d_{N-2} + \frac{7}{2}d_{N-1} &= 6x_{1} - \frac{1}{2} d_{N-1} - x_{N}\\
+        d_{N-2} + 4d_{N-1} &= 6x_{1} - x_{N}.\\
+    \end{split}
+\end{align*}
+
+Therefore, the original system becomes
+
+\begin{align*}
+    \begin{pmatrix}
+        4 & 1 \\
+        1 & 4 & 1 & & 0\\
+          & \ddots & \ddots & \ddots \\
+        0 & & 1 & 4 & 1\\
+          & &   & 1 & 4\\
+    \end{pmatrix} \begin{pmatrix}
+        d_{1}\\
+        d_{2}\\
+        \vdots\\
+        d_{N-2}\\
+        d_{N-1}\\
+    \end{pmatrix} = \begin{pmatrix}
+        6x_{1} - x_{0}\\
+        6x_{2}\\
+        \vdots\\
+        6x_{N-2}\\
+        6x_{N-1} - x_{N}\\
+    \end{pmatrix}
+\end{align*}
+
+\section*{Problem 2}
+\setcounter{section}{2}
+\setcounter{subsection}{1}
+
+Given the linear system
+
+\begin{align*}
+    \begin{pmatrix}
+        \frac{7}{2} & 1 \\
+        1 & 4 & 1 & & 0\\
+          & \ddots & \ddots & \ddots \\
+        0 & & 1 & 4 & 1\\
+          & &   & 1 & \frac{7}{2}\\
+    \end{pmatrix} \begin{pmatrix}
+        d_{1}\\
+        d_{2}\\
+        \vdots\\
+        d_{N-2}\\
+        d_{N-1}\\
+    \end{pmatrix} = \begin{pmatrix}
+        6x_{1} - \frac{3}{2}d_{0}\\
+        6x_{2}\\
+        \vdots\\
+        6x_{N-2}\\
+        6x_{N-1} - \frac{3}{2}d_{N}\\
+    \end{pmatrix}
+\end{align*}
+
+and 
+
+\begin{align*}
+    d_{0} &= d_{1} + \frac{2}{3} x_{0} - \frac{2}{3} x_{1}\\
+    d_{N} &= d_{N-1} + \frac{2}{3} x_{N} - \frac{2}{3} x_{N-1}\\
+\end{align*}
+
+we can substitute $d_{0}$ and $d_{N}$ into the following equations
+
+\begin{align*}
+    \frac{7}{2}d_{1} + d_{2} &= 6x_{1} - \frac{3}{2}d_{0}\\
+    d_{N-2} + \frac{7}{2}d_{N-1}  &= 6x_{N-1} - \frac{3}{2}d_{N}.\\
+\end{align*}
+
+As a result,
+
+\begin{align*}
+    \begin{split}
+        \frac{7}{2}d_{1} + d_{2} &= 6x_{1} - \frac{3}{2}\left( d_{1} + \frac{2}{3} x_{0} - \frac{2}{3} x_{1} \right)\\
+        \frac{7}{2}d_{1} + d_{2} &= 6x_{1} - \frac{3}{2} d_{1} - x_{0} + x_{1}\\
+        5d_{1} + d_{2} &= 7x_{1} - x_{0}\\
+    \end{split}
+    \begin{split}
+        d_{N-2} + \frac{7}{2}d_{N-1} &= 6x_{1} - \frac{3}{2}\left( d_{N-1} + \frac{2}{3} x_{N} - \frac{2}{3} x_{N-1} \right)\\
+        d_{N-2} + \frac{7}{2}d_{N-1} &= 6x_{1} - \frac{3}{2} d_{N-1} - x_{N} + x_{N-1}\\
+        d_{N-2} + 5d_{N-1} &= 7x_{N-1} - x_{N}\\
+    \end{split}
+\end{align*}
+
+Therefore, the original system becomes
+
+\begin{align*}
+    \begin{pmatrix}
+        5 & 1 \\
+        1 & 4 & 1 & & 0\\
+          & \ddots & \ddots & \ddots \\
+        0 & & 1 & 4 & 1\\
+          & &   & 1 & 5\\
+    \end{pmatrix} \begin{pmatrix}
+        d_{1}\\
+        d_{2}\\
+        \vdots\\
+        d_{N-2}\\
+        d_{N-1}\\
+    \end{pmatrix} = \begin{pmatrix}
+        7x_{1} - x_{0}\\
+        6x_{2}\\
+        \vdots\\
+        6x_{N-2}\\
+        7x_{N-1} - x_{N}\\
+    \end{pmatrix}
+\end{align*}
+
+\section*{Problem 3}
+We want to show that
+\begin{equation}
+    m_0 = C^\prime (0) = b_1 - x_0 = - \frac{3}{2}x_0 +2x_1 - \frac{1}{2}. \notag
+\end{equation}
+By definition, $m_i$ is the vector tangent to the point $x_i$. We know, then,
+that $m_0 = C^\prime(0)$. Thus, we may proceed as follows:
+\begin{align*}
+    C(t) &= \frac{(2 - t)^2}{4} x_0 + \frac{(2-t)t}{2} b_1 + \frac{t^2}{4}x_2 \\
+    C^\prime (t) &= \frac{(2t - 4)}{4}x_0 - \frac{t}{2}b_1 + \frac{(2-t)}{2}b_1 + \frac{t}{2}x_2 \\
+    C^\prime(0) &= \frac{(2(0) - 4)}{4}x_0 - \frac{(0)}{2}b_1 + \frac{(2-(0))}{2}b_1 + \frac{(0)}{2}x_2 \\
+                &= -x_0 -0 + b_1 +0 \\
+                &= b_1 - x_0.
+\end{align*}
+From a previous result, we know that $b_1 = -\frac{1}{2}x_0 + 2x_1
+-\frac{1}{2}x_2$. Substituting this expression in for $b_1$ of our computed
+value of $C^\prime(0)$, we acquire
+\begin{align*}
+    m_0 &= b_1 - x_0 \\
+        &= (-\frac{1}{2}x_0 + 2x_1 -\frac{1}{2}x_2) - x_0 \\
+        &= -\frac{3}{2}x_0 + 2x_1 -\frac{1}{2}x_2 ,
+\end{align*}
+as desired.
+
+Given that $d_0 = x_0 + \frac{1}{3}m_0$, we can expand using the above result,
+\begin{align*}
+    d_0 &= x_0 + \frac{1}{3}m_0 \\
+        &= x_0 + \frac{1}{3}(-\frac{3}{2}x_0 + 2x_1 -\frac{1}{2}x_2) \\
+        &= x_0 - \frac{1}{2}x_0 + \frac{2}{3}x_1 - \frac{1}{6}x_2 \\
+        &= \frac{1}{2}x_0 + \frac{1}{2}(\frac{4}{3}x_1 - \frac{1}{3}x_2) \\
+        &= \frac{1}{2}x_0 + \frac{1}{2}(x_1 + \frac{1}{3}x_1 + \frac{1}{3}x_2) \\
+        &= \frac{1}{2}x_0 + \frac{1}{2}(x_1 + \frac{1}{3}(x_1 - x_2))
+\end{align*}
+and we arrive at the desired expression.
+
+Now we wish to show that
+\begin{equation}
+    m_N = C^\prime (2) = x_N - b_N = \frac{1}{2}x_{N-2} - 2x_{N-1} + \frac{3}{2}x_N. \notag
+\end{equation}
+Similar to the above, we proceed as follows:
+\begin{align*}
+    C(t) &= \frac{(2 - t)^2}{4} x_{N-1} + \frac{(2-t)t}{2} b_N + \frac{t^2}{4}x_N \\
+    C^\prime (t) &= \frac{(2t - 4)}{4}x_{N-1} - \frac{t}{2}b_N + \frac{(2-t)}{2}b_N + \frac{t}{2}x_N \\
+    C^\prime(2) &= \frac{(2(2) - 4)}{4}x_{N-1} - \frac{(2)}{2}b_N + \frac{(2-(2))}{2}b_N + \frac{(2)}{2}x_N \\
+                &= \frac{0}{4}x_{N-1} - \frac{2}{2}b_N + \frac{0}{2}b_N + \frac{2}{2}x_N \\
+                &= 0 -b_1 + 0 + x_N \\
+                &= x_N - b_N.
+\end{align*}
+We are given that $b_N = -\frac{1}{2}x_{N-2} + 2x_{N-1} -\frac{1}{2}x_N$.
+Substituting this expression in for $b_1$ of our computed value of
+$C^\prime(2)$, we acquire
+\begin{align*}
+    m_N &= x_N - b_N \\
+        &= x_N - (-\frac{1}{2}x_{N-2} + 2x_{N-1} -\frac{1}{2}x_N) \\
+        &= \frac{1}{2}x_{N-2} - 2x_{N-1} +\frac{3}{2}x_N ,
+\end{align*}
+as desired.
+
+Given that $d_N = x_N - \frac{1}{3}m_N$, we can expand using the above result,
+\begin{align*}
+    d_N &= x_N - \frac{1}{3}m_N \\
+        &= x_N - \frac{1}{3}(\frac{1}{2}x_{N-2} - 2x_{N-1} +\frac{3}{2}x_N) \\
+        &= x_N - \frac{1}{6}x_{N-2} + \frac{2}{3}x_{N-1} - \frac{1}{2}x_N \\
+        &= \frac{1}{2}(\frac{4}{3}x_{N-1} - \frac{1}{3}x_{N-2})+ \frac{1}{2}x_N\\
+        &= \frac{1}{2}(x_{N-1} + \frac{1}{3}(x_{N-1}-x_{N-2}))+ \frac{1}{2}x_N,
+\end{align*}
+and we arrive at the desired expression.
+
+\section*{Problem 4}
+First, we want to show that the third derivation at $b_0$ and $b_3$ of a Bezier
+cubic specified by the control points $(b_0, b_1, b_2, b_3)$ is $6(-b_0 + 3b_1
+-3b_1 + b_3)$. We begin with the function $C(t)$.
+\begin{align*}
+    C(t) &=
+    (1 - t)^3b_0 + 3(1-t)^2b_1 +3(1-t)t^2b_2 + t^3b_3 \\
+    C^\prime (t) &=
+    3(1-t)^2 (-1) b_0 + 3 \lbrack 2(1-t)(-1)t + (1-t)^2 \rbrack b_1 + 3     \lbrack (-1)t^2 + (2)(1-t)t \rbrack b_2 + 3t^2 b_3 \\
+    &=
+    -3(1-t)^2b_0 -6(1-t)t b_1 + 3(1-t)^2b_1 -3t^2b_2 + 6(1-t)t b_2             +3t^2b_3 \\
+    C^{\prime \prime}(t) &=
+    3(2)(1-t)b_0 -6 \lbrack (-1)t + (1-t)\rbrack b_1 - 3(2)(1-t)b_1 -         3(2)t b_2 + 6 \lbrack -t + (1-t)\rbrack b_2 + 6t b_3 \\
+    &=
+    6(1-t)b_0 + 6t b_1 -6(1-t) b_1 -6(1-t) b_1-6t b_2 -6t b_2 +6(1-t)         b_2 + 6t b_3 \\
+    C^{\prime  \prime \prime}(t) &=
+    6(-1)b_0 + 6b_1 - 6(-1)b_1 -6(-1)b_1 - 6b_2 - 6 b_2 + 6(-1)b_2 +         6b_2 \\
+    &=
+    6(-b_0 + b_1 + b_1 + b_1 - b_2 - b_2 - b_2 + b_3) \\
+    &=
+    6(-b_0 +3 b_1 - 3b_2 + b_3)
+\end{align*}
+Now, we wish to show that when $N=3$, there is no need to solve a linear
+system, and that the points $d_0, d_1, d_2, d_3$ are given in terms of $x_0,
+x_1, x_2, x_3$.
+
+It is given that $C^{\prime\prime\prime}_1(1) = C^{\prime\prime\prime}_2(0)$. So we have
+\begin{align*}
+    6(-b_0^1 + 3b_1^1 -3b_2^1 +b_3^1) &=
+    6(-b_0^2 + 3b_1^2 -3b_2^2 +b_3^2) \\
+    -b_0^1 + 3b_1^1 -3b_2^1 +b_3^1 &=
+    -b_0^2 + 3b_1^2 -3b_2^2 +b_3^2 .
+\end{align*}
+Using the set of equations from page $3$ of the project instructions, we can substitute in for the $b_i^j$ and solve for $d_0$.
+\begin{align*}
+    -(x_0) + 3(d_0) - 3(\frac{1}{2}d_0 + \frac{1}{2}d_1) + x_1 &=
+    -(x_1) + 3(\frac{2}{3} d_1 + \frac{1}{3}d_2) - 3(\frac{1}{3}d_1 +         \frac{2}{3}d_2) + x_2 \\
+    -x_0 + \frac{3}{2}d_0 - \frac{3}{2}d_1 + x_1 &=
+    -x_1 + d_1 -d_2 + x_2 \\
+    \frac{3}{2}d_0 &=
+    x_0 - 2x_1 +x_2 + \frac{3}{2}d_1 + d_1 - d_2 \\
+    d_0 &=
+    \frac{2}{3}x_0 - \frac{4}{3}x_1 + \frac{2}{3}x_2 + \frac{5}{3}d_1 -     \frac{2}{3}d_2
+\end{align*}
+From the original linear system, we obtain
+\begin{align*}
+    \frac{7}{2}d_1 + d_2 &=
+    6x_1 - \frac{3}{2}d_0 \\
+    \frac{7}{2}d_1 &=
+    6x_1 - \frac{3}{2}d_0 - d_2 \\
+    d_1 &=
+    (\frac{2}{7})6x_1 -(\frac{2}{7}) \frac{3}{2}d_0 -(\frac{2}{7})d_2 \\
+    &=
+    \frac{12}{7}x_1 - \frac{3}{7}d_0 - \frac{2}{7} d_2 \\
+    \frac{5}{3}d_1 &=
+    (\frac{5}{3})\frac{12}{7}x_1 - (\frac{5}{3})\frac{3}{7}d_0 -             (\frac{5}{3})\frac{2}{7}d_2 \\
+    \frac{5}{3}d_1 &=
+    \frac{20}{7}x_1 - \frac{5}{7}d_0 - \frac{10}{21}d_2
+\end{align*}
+and can substitute this into the above equation for $d_0$. This yields
+\begin{align*}
+    d_0 &=
+    \frac{2}{3}x_0 - \frac{4}{3}x_1 + \frac{2}{3}x_2 + (\frac{20}{7}x_1     - \frac{5}{7}d_0 - \frac{10}{21}d_2) - \frac{2}{3}d_2 \\
+    \frac{12}{7}d_0 &=
+    \frac{2}{3}x_0 - \frac{32}{21}x_1 +\frac{2}{3}x_2 -\frac{8}{7}d_2 \\
+    d_0 &=
+    (\frac{7}{12})\frac{2}{3}x_0 - (\frac{7}{12})\frac{32}{21}x_1 +         (\frac{7}{12})\frac{2}{3}x_2 - (\frac{7}{12})\frac{8}{7}d_2 \\
+    &=
+    \frac{7}{18}x_0 + \frac{8}{9}x_1 + \frac{7}{18}x_2 - \frac{2}{3}d_2,
+\end{align*}
+which is the desired equation of $d_0$. This equation can then be substituted into the one we acquired from the original linear system
+\begin{align*}
+    d_1 &=
+    \frac{12}{7}x_1 - \frac{3}{7}d_0 - \frac{2}{7} d_2 \\
+    &=
+    \frac{12}{7}x_1 - \frac{3}{7}(\frac{7}{18}x_0 + \frac{8}{9}x_1 +         \frac{7}{18}x_2 - \frac{2}{3}d_2) - \frac{2}{7} d_2 \\
+    &=
+    \frac{12}{7}x_1 - \frac{1}{6}x_0 - \frac{8}{21}x_1 - \frac{1}        {6}x_2     + \frac{2}{7}d_2 - \frac{2}{7} d_2 \\
+    &=
+    - \frac{1}{6}x_0 + \frac{4}{3}x_1 - \frac{1}{6}x_2
+\end{align*}
+which gives us the desired equation for $d_1$. One may note that the process
+for acquiring $d_2$ and $d_3$ is symmetric (Prof. Gallier said that it was
+alright to point this out and not show the work), and we arrive at the
+following system:
+\begin{align*}
+    d_0 &=
+    \frac{7}{18}x_0 +\frac{8}{9}x_1 +\frac{7}{18}x_2 -\frac{2}{3}d_2\\
+    d_1 &=
+    -\frac{1}{6}x_0 + \frac{4}{3}x_1 - \frac{1}{6}x_2 \\
+    d_2 &=
+    -\frac{1}{6}x_1 + \frac{4}{3}x_2 - \frac{1}{6}x_3 \\
+    d_3 &=
+    \frac{7}{18}x_1 +\frac{8}{9}x_2 +\frac{7}{18}x_3 -\frac{2}{3}d_1.
+\end{align*}
+Since $d_1$ and $d_2$ are computed entirely from the $x_i$, and $d_0$ and $d_3$
+depend on the $x_i$, $d_1$, and $d_2$, it is obvious that we need not solve any
+linear system when $N=3$.
+
+Using a similar process, we seek to find the system of equations for when
+$N=4$. To begin, we note that the equations which were used to find $d_0$ and
+$d_N$ in the previous part of the problem are still valid for this curve
+because the endpoints will be computed the same way. Similarly, the second and
+second to last points are calculated in the same manner. Thus, we know that
+\begin{align*}
+    d_0 &=
+    \frac{7}{18}x_0 +\frac{8}{9}x_1 +\frac{7}{18}x_2 -\frac{2}{3}d_2\\
+    d_1 &=
+    -\frac{1}{6}x_0 + \frac{4}{3}x_1 - \frac{1}{6}x_2 \\
+    d_3 &=
+    -\frac{1}{6}x_1 + \frac{4}{3}x_2 - \frac{1}{6}x_3 \\
+    d_4 &=
+    \frac{7}{18}x_1 +\frac{8}{9}x_2 +\frac{7}{18}x_3 -\frac{2}{3}d_2,
+\end{align*}
+and we have only to conclude that
+\begin{align*}
+    d_2 &=
+    \frac{3}{2}x_2 - \frac{1}{4}d_1 - \frac{1}{4}d_3.
+\end{align*}
+To do so, we refer back to the linear system on page $4$ of the project instructions. From this, we can obtain
+\begin{align*}
+    d_1 + 4d_2 + d_3 &=
+    6x_2 \\
+    4d_2 &=
+    6x_2 - d_1 - d_3 \\
+    d_2 &=
+    \frac{3}{2}x_2 - \frac{1}{4}d_1 - \frac{1}{4}d_3,
+\end{align*}
+as required.
+
+When $N \geq 5$, the process for calculating $d_0, d_1, d_{N-1},$ and $d_N$ is the same as the above, so we have
+\begin{align*}
+    d_0 &=
+    \frac{7}{18}x_0 +\frac{8}{9}x_1 +\frac{7}{18}x_2 -\frac{2}{3}d_2\\
+    d_1 &=
+    -\frac{1}{6}x_0 + \frac{4}{3}x_1 - \frac{1}{6}x_2 \\
+    d_{N-1} &=
+    -\frac{1}{6}x_{N-2} + \frac{4}{3}x_{N-1} - \frac{1}{6}x_N \\
+    d_N &=
+    \frac{7}{18}x_{N-2} +\frac{8}{9}x_{N-1} +\frac{7}{18}x_N -\frac{2}     {3}d_{N-2}.
+\end{align*}
+The remaining values $d_2, \dots, d_{N-2}$ are derived from the original linear
+system given on page $3$ of the project instructions -- the same equation we
+used to derive $d_2$ in the above part. Instead of deriving $d_2$ directly, we
+reorganize the expression to obtain
+\begin{align*}
+    d_1 + 4d_2 + d_3 &=
+    6x_2 \\
+    4d_2 + d_3 &=
+    6x_2 - d_1 \\
+    &=
+    6x_2 - (-\frac{1}{6}x_0 + \frac{4}{3}x_1 - \frac{1}{6}x_2) \\
+    &=
+    6x_2 + \frac{1}{6}x_0 - \frac{4}{3}x_1 + \frac{1}{6}x_2,
+\end{align*}
+which gives us the correct solution to the linear system. The process is
+symmetric for $d_{N-2}$. The remaining entries are derived directly from the
+original system, as we will obtain
+\begin{align*}
+    d_i + 4d_{i+1} + d_{i+2} = 6x_{i+1}
+\end{align*}
+for $2 \leq i \leq (N-2)$.
+
+Because the system is represented by an $(N-3) \times (N-3)$ matrix, when
+$N=5$, the given linear system is reduced to the $2 \times 2$ system formed by
+the first and last columns of the original:
+\begin{align*}
+    \begin{pmatrix}
+        4 & 1 \\
+        1 & 4
+    \end{pmatrix}
+    \begin{pmatrix}
+        d_2 \\
+        d_3
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        6x_2 + \frac{1}{6}x_0 - \frac{4}{3}x_1 + \frac{1}{6}x_2 \\
+        6x_3 + \frac{1}{6}x_3 - \frac{4}{3}x_4 + \frac{1}{6}x_5
+    \end{pmatrix}
+\end{align*}
+
+\section*{Problem 5}
+\setcounter{section}{5}
+\setcounter{subsection}{1}
+
+Executing \texttt{project\_3.m} launches a graphical interface where the user
+can click a series of points which will interpolate a b-spline curve. The first
+curve is drawn after at least $5$ points are clicked and redrawn for every
+subsequent point. With every point added, the tridiagonal system $A*d = x$
+expands by $1$ and must be solved again. The program solves the system at
+each iteration with a call to \texttt{solvetri.m}. This function solves 
+the tridiagonal system using both Gaussian elimination and LU decomposition,
+and outputs the time each process takes to the console.
+
+\bigskip
+It is indeed true that Gaussian elimination does not require any pivoting 
+when solving interpolation problems.
+
+\section*{Problem 6}
+\setcounter{section}{6}
+\setcounter{subsection}{1}
+
+Executing \texttt{project\_3.m} launches a graphical interface where the user
+can click a series of points which will interpolate a b-spline curve. The first
+curve is drawn after at least $5$ points are clicked and redrawn for every
+subsequent point. With every point added, the tridiagonal system $A*d = x$
+expands by $1$ and must be solved again. The program solves the system at
+each iteration with a call to \texttt{solvetri.m}. This function solves 
+the tridiagonal system using both Gaussian elimination and LU decomposition,
+and outputs the time each process takes to the console.
+
+\bigskip
+When the dimension of $A$ is small, the system is solved faster using Gaussian
+elimination than using LU decomposition. However, as the system grows larger
+the complexity of Gaussian elimination causes it to take much longer than LU
+decomposition. The user can verify this by clicking more points to add to the
+system and observing the increasing computation time of Gaussian elimination.
+
+\bigskip
+Using alternative tridiagonal systems with large diagonal entries, we can also
+see that LU factorization is more numerically stable than Gaussian elimination.
+
+\section*{Problem 7}
+\setcounter{section}{7}
+\setcounter{subsection}{1}
+
+Executing \texttt{project\_3.m} launches a graphical interface where the user
+can click a series of points which will interpolate a b-spline curve. The first
+curve is drawn after at least $5$ points are clicked and redrawn for every
+subsequent point. With every point added, the tridiagonal system $A*d = x$
+expands by $1$ and must be solved again. The program solves the system at
+each iteration with a call to \texttt{solvetri.m}. This function solves 
+the tridiagonal system using both Gaussian elimination and LU decomposition,
+and outputs the time each process takes to the console.
+
+\bigskip
+The main function \texttt{project\_3.m} calls the function
+\texttt{curveinterp.m} to build and solve the tridiagonal system with various
+end conditions. Modifying the \texttt{econd} parameter in
+\texttt{project\_3.m}, changes which end condition \texttt{curveinterp.m} will
+use. This parameter can be set to \texttt{natural}, \texttt{quadratic},
+\texttt{bessel}, and \texttt{knot}. The user will see the effects of each
+choice of the parameter as the curve is drawn.
+
+\end{document}
